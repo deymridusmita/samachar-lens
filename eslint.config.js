@@ -17,5 +17,12 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      // The context files intentionally colocate their provider component
+      // with their hook (useAuth / usePreferences / useBookmarks) — a
+      // standard React pattern. This rule only affects Fast Refresh during
+      // development, not build output or correctness.
+      'react-refresh/only-export-components': 'off',
+    },
   },
 ])
