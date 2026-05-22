@@ -7,8 +7,9 @@
 **who owns and funds** the outlet behind each report, and how the same event is
 framed — or ignored — across different newsrooms.
 
-<!-- Submission details — fill in as your course requires -->
-**Submitted by:** Mridusmita Dey &nbsp;·&nbsp; **Course:** _add your course / code here_
+---
+
+**Submitted by:** Group 5 (Mridusmita Dey, Souvik Banerjee, Subhajit Mondal, Kaif Kamal, Sayandeep Biswas, Pratibha Mukherjee) &nbsp;·&nbsp; **Course:** Design Thinking (TIU-UCBCS-S208) | Final Deliverables
 
 ---
 
@@ -47,23 +48,6 @@ accounts, subscriptions and ads are all mocked on the client.
 - **React Context** for state (auth, preferences, bookmarks)
 - **lucide-react** for icons
 - Plain **CSS** with a design-token system — no UI framework
-
-## Getting started
-
-**Prerequisites:** [Node.js](https://nodejs.org/) 18 or newer, and npm.
-
-```bash
-npm install      # install dependencies
-npm run dev      # start the dev server  ->  http://localhost:5173
-```
-
-Other scripts:
-
-```bash
-npm run build    # production build into dist/
-npm run preview  # preview the production build
-npm run lint     # run ESLint
-```
 
 ## Project structure
 
@@ -111,7 +95,7 @@ renders cleanly.
 
 ## Acknowledgements
 
-- Icons — [lucide](https://lucide.dev/)
-- Fonts — Playfair Display, Inter & Noto Sans Devanagari via Google Fonts
-- Outlet names and ownership information are referenced for educational
-  purposes only.
+- Icons: [lucide](https://lucide.dev/)
+- Fonts: Playfair Display, Inter & Noto Sans Devanagari via Google Fonts
+- Images: Lorem Piccsum, msn.com. en.wikipedia.org, timesbull.com, isagyan.in, indiatvnews.com, Figma Community Resources.
+- Outlet names and ownership information are referenced for educational purposes only.
