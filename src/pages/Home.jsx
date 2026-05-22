@@ -1,0 +1,117 @@
+import { useState, Fragment } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Menu, Search } from 'lucide-react'
+import { ARTICLES } from '../data/articles'
+import { useAuth } from '../context/AuthContext'
+import { usePreferences } from '../context/PreferencesContext'
+import { useTranslation } from '../hooks/useTranslation'
+import { useGate } from '../hooks/useGate'
+import AppHeader from '../components/AppHeader'
+import BrandMark from '../components/BrandMark'
+import HeroCarousel from '../components/HeroCarousel'
+import StoryCard from '../components/StoryCard'
+import OutletList from '../components/OutletList'
+import AppDrawer from '../components/AppDrawer'
+import OwnershipSheet from '../components/OwnershipSheet'
+import AdCard from '../components/AdCard'
+
+function greetingKey() {
+  const h = new Date().getHours()
+  if (h < 12) return 'greetingMorning'
+  if (h < 17) return 'greetingAfternoon'
+  return 'greetingEvening'
+}
+
+export default function Home() {
+  const navigate = useNavigate()
+  const { user, isAuthenticated, hasExplored } = useAuth()
+  const { topics } = usePreferences()
+  const { t } = useTranslation()
+  const { guard } = useGate()
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [ownership, setOwnership] = useState(null)
+
+  const trending = ARTICLES.filter((a) => a.trending)
+  const forYou = topics.length
+    ? [...ARTICLES].sort(
+        (a, b) =>
+          (topics.includes(b.category) ? 1 : 0) -
+          (topics.includes(a.category) ? 1 : 0),
+      )
+    : ARTICLES
+  const firstName = user?.name?.split(' ')[0] || t('guestName')
+
+  return (
+    <div className="screen has-nav-pad">
+      <AppHeader
+        left={
+          <button
+            className="icon-btn"
+            onClick={() => setDrawerOpen(true)}
+            aria-label="Menu"
+          >
+            <Menu size={22} />
+          </button>
+        }
+        center={<BrandMark size="sm" />}
+        right={
+          <button
+            className="icon-btn"
+            onClick={() => navigate('/search')}
+            aria-label={t('navSearch')}
+          >
+            <Search size={21} />
+          </button>
+        }
+      />
+
+      <div className="home">
+        <div className="home-greet">
+          <p className="home-greet-hi">
+            {t(greetingKey())}, <strong>{firstName}</strong>
+          </p>
+          <p className="home-greet-sub">{t('homeIntro')}</p>
+          {hasExplored && !isAuthenticated && (
+            <span className="guest-badge">{t('guestBadge')}</span>
+          )}
+        </div>
+
+        <section className="home-section">
+          <div className="section-head section-head--pad">
+            <h2 className="section-title">{t('trendingNow')}</h2>
+          </div>
+          <HeroCarousel articles={trending} />
+        </section>
+
+        <section className="home-section section-pad">
+          <div className="section-head">
+            <h2 className="section-title">{t('forYou')}</h2>
+            {topics.length > 0 && (
+              <span className="section-note">{t('basedOnInterests')}</span>
+            )}
+          </div>
+          <div className="card-stack">
+            {forYou.map((a, i) => (
+              <Fragment key={a.id}>
+                <StoryCard article={a} />
+                {i === 1 && <AdCard index={0} />}
+                {i === 4 && <AdCard index={1} />}
+              </Fragment>
+            ))}
+          </div>
+        </section>
+
+        <section className="home-section section-pad">
+          <div className="section-head">
+            <h2 className="section-title">{t('outletsTracked')}</h2>
+          </div>
+          <p className="section-sub">{t('outletsTrackedSub')}</p>
+          <OutletList onSelect={(id) => guard(() => setOwnership(id))} />
+        </section>
+      </div>
+
+      <AppDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <OwnershipSheet outletId={ownership} onClose={() => setOwnership(null)} />
+    </div>
+  )
+}

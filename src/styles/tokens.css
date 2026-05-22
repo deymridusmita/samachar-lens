@@ -1,0 +1,82 @@
+/* ============================================================
+   Samachar Lens — design tokens
+   Palette color-picked from the prototype frames:
+   navy #092C4C · periwinkle #8EAEF2 · cream #FFF5D1 · orange #FFAA00
+   ============================================================ */
+
+:root {
+  /* ---- brand palette ---- */
+  --navy: #092c4c;
+  --navy-700: #0d3358;
+  --navy-600: #143e63;
+  --navy-500: #245074;
+  --navy-400: #466c8c;
+
+  --periwinkle: #8eaef2;
+  --periwinkle-400: #a8bef5;
+  --periwinkle-200: #d0dafb;
+  --periwinkle-100: #e7ecfc;
+
+  --cream: #fff5d1;
+  --cream-deep: #fbe9ad;
+  --cream-line: #efdfa6;
+
+  --orange: #ffaa00;
+  --orange-dark: #e89800;
+  --orange-soft: #ffe7b0;
+
+  /* ---- semantic ---- */
+  --red: #e0695f;
+  --red-soft: #f8e0de;
+  --green: #3fa98c;
+  --green-soft: #d9efe8;
+
+  /* ---- editorial-leaning chips (the "lens") ---- */
+  --lean-left: #5c8bd6;
+  --lean-left-soft: #e2ebf8;
+  --lean-center: #7a8699;
+  --lean-center-soft: #e9ebef;
+  --lean-right: #d98a3d;
+  --lean-right-soft: #f8ead7;
+
+  /* ---- neutrals ---- */
+  --ink: #14212e;
+  --ink-soft: #3a4856;
+  --muted: #6a7686;
+  --faint: #9aa3b0;
+  --line: #e6e9f0;
+  --line-strong: #d6dae3;
+  --surface: #ffffff;
+  --surface-2: #f4f6fb;
+  --app-bg: #f6f7fb;
+  --stage-bg: #dfe3ec;
+
+  /* ---- typography ---- */
+  --font-serif: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-sans: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ---- radius ---- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+
+  /* ---- shadow ---- */
+  --shadow-xs: 0 1px 3px rgba(9, 44, 76, 0.08);
+  --shadow-card: 0 6px 22px rgba(9, 44, 76, 0.09);
+  --shadow-pop: 0 12px 34px rgba(9, 44, 76, 0.18);
+  --shadow-sheet: 0 -12px 44px rgba(9, 44, 76, 0.24);
+  --shadow-phone: 0 36px 80px rgba(9, 44, 76, 0.34);
+
+  /* ---- device frame ---- */
+  --frame-w: 404px;
+  --frame-h: 876px;
+  --nav-h: 66px;
+  --header-h: 60px;
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 0.26s;
+}

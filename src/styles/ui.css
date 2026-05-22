@@ -1,0 +1,426 @@
+/* ============================================================
+   UI primitives — buttons, inputs, sheets, nav, controls
+   ============================================================ */
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: var(--r-pill);
+  transition: transform 0.08s var(--ease), background 0.16s, opacity 0.16s,
+    box-shadow 0.16s;
+}
+.btn:active {
+  transform: scale(0.975);
+}
+.btn--full {
+  width: 100%;
+}
+.btn--lg {
+  height: 54px;
+  padding: 0 24px;
+  font-size: 15.5px;
+}
+.btn--md {
+  height: 44px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+.btn--sm {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+.btn--primary {
+  background: var(--orange);
+  color: var(--navy);
+  box-shadow: 0 8px 18px rgba(255, 170, 0, 0.34);
+}
+.btn--primary:hover {
+  background: var(--orange-dark);
+}
+.btn--navy {
+  background: var(--navy);
+  color: #fff;
+}
+.btn--navy:hover {
+  background: var(--navy-600);
+}
+.btn--soft {
+  background: var(--periwinkle-100);
+  color: var(--navy);
+}
+.btn--soft:hover {
+  background: var(--periwinkle-200);
+}
+.btn--outline {
+  background: transparent;
+  color: var(--navy);
+  box-shadow: inset 0 0 0 1.6px var(--line-strong);
+}
+.btn--outline:hover {
+  background: var(--surface-2);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+}
+.btn--ghost:hover {
+  background: var(--surface-2);
+}
+.btn:disabled,
+.btn.is-loading {
+  opacity: 0.55;
+  cursor: default;
+  pointer-events: none;
+}
+.btn-icon {
+  display: inline-flex;
+}
+.btn-spinner {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2.4px solid currentColor;
+  border-top-color: transparent;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ---- icon button ---- */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  flex-shrink: 0;
+  transition: background 0.14s;
+}
+.icon-btn:hover {
+  background: var(--surface-2);
+}
+
+/* ---- form fields ---- */
+.field {
+  margin-bottom: 15px;
+}
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.input-wrap {
+  position: relative;
+}
+.input {
+  width: 100%;
+  height: 52px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--cream-line);
+  background: var(--cream);
+  padding: 0 15px;
+  font-size: 15px;
+  color: var(--ink);
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.input::placeholder {
+  color: #b6a878;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--periwinkle);
+  box-shadow: 0 0 0 3.5px var(--periwinkle-100);
+}
+.input--with-icon {
+  padding-left: 44px;
+}
+.input--with-trail {
+  padding-right: 46px;
+}
+.input--error {
+  border-color: var(--red);
+}
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #b09a5e;
+  pointer-events: none;
+}
+.input-trail {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+.field-error {
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* ---- checkbox ---- */
+.checkbox {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.checkbox input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.checkbox-box {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1.8px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  margin-top: 1px;
+  transition: background 0.14s, border-color 0.14s;
+}
+.checkbox-box.is-checked {
+  background: var(--navy);
+  border-color: var(--navy);
+}
+.checkbox-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ---- toggle ---- */
+.toggle {
+  width: 46px;
+  height: 28px;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.18s var(--ease);
+}
+.toggle.is-on {
+  background: var(--green);
+}
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.18s var(--ease);
+}
+.toggle.is-on .toggle-knob {
+  transform: translateX(18px);
+}
+
+/* ---- card ---- */
+.card {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+}
+.card--interactive {
+  cursor: pointer;
+  transition: transform 0.1s var(--ease), box-shadow 0.16s;
+}
+.card--interactive:active {
+  transform: scale(0.99);
+}
+
+/* ---- tabs (segmented) ---- */
+.tabs {
+  display: flex;
+  gap: 3px;
+  background: var(--surface-2);
+  border-radius: var(--r-pill);
+  padding: 4px;
+}
+.tabs-tab {
+  flex: 1;
+  height: 34px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: background 0.14s, color 0.14s;
+}
+.tabs-tab.is-active {
+  background: var(--surface);
+  color: var(--navy);
+  box-shadow: var(--shadow-xs);
+}
+
+/* ---- progress bar ---- */
+.progress {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--periwinkle-100);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--orange);
+  transition: width 0.34s var(--ease);
+}
+
+/* ---- avatar ---- */
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--periwinkle-100);
+  flex-shrink: 0;
+}
+.avatar--fallback {
+  display: grid;
+  place-items: center;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ---- overlay layout (scrim defined in global.css) ---- */
+.overlay-scrim {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.overlay-scrim--center {
+  align-items: center;
+  padding: 24px;
+}
+
+/* ---- bottom sheet ---- */
+.sheet {
+  position: relative;
+  width: 100%;
+  max-height: 88%;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  box-shadow: var(--shadow-sheet);
+  animation: sheet-up 0.3s var(--ease);
+}
+.sheet-grab {
+  width: 40px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+  margin: 9px auto 2px;
+  flex-shrink: 0;
+}
+.sheet-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 8px 16px 10px 20px;
+}
+.sheet-title {
+  font-size: 18px;
+}
+.sheet-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.sheet-body {
+  padding: 4px 20px 24px;
+  overflow-y: auto;
+}
+
+/* ---- modal ---- */
+.modal {
+  width: 100%;
+  max-width: 320px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 24px 22px;
+  text-align: center;
+  animation: pop-in 0.24s var(--ease);
+}
+.modal-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--periwinkle-100);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+}
+.modal-title {
+  font-size: 19px;
+}
+.modal-body {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-top: 8px;
+}
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+/* ---- side drawer ---- */
+.side-drawer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 84%;
+  max-width: 312px;
+  background: var(--surface);
+  box-shadow: var(--shadow-pop);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: drawer-in 0.28s var(--ease);
+}
+
+/* ---- bottom nav ---- */
+.bottom-nav {
+  flex: 0 0 auto;
+  height: var(--nav-h);
+  display: flex;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 18px rgba(9, 44, 76, 0.05);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--faint);
+  transition: color 0.14s;
+}
+.nav-item.active {
+  color: var(--navy);
+}
