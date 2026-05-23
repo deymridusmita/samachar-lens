@@ -14,8 +14,14 @@ export default function SignUp() {
   const navigate = useNavigate()
   const { signUp } = useAuth()
   const { t } = useTranslation()
-  const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' })
-  const [agree, setAgree] = useState(false)
+  // Pre-filled so demo sign-up is one click; clear any field to test validation.
+  const [form, setForm] = useState({
+    name: 'Priya Sharma',
+    email: 'priya@example.com',
+    password: 'samachar2026',
+    confirm: 'samachar2026',
+  })
+  const [agree, setAgree] = useState(true)
   const [errors, setErrors] = useState({})
   const [showPw, setShowPw] = useState(false)
 

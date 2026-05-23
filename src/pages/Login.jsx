@@ -13,7 +13,11 @@ export default function Login() {
   const navigate = useNavigate()
   const { logIn } = useAuth()
   const { t } = useTranslation()
-  const [form, setForm] = useState({ email: '', password: '' })
+  // Pre-filled so demo log-in is one click; clear either field to test validation.
+  const [form, setForm] = useState({
+    email: 'priya@example.com',
+    password: 'samachar2026',
+  })
   const [errors, setErrors] = useState({})
   const [showPw, setShowPw] = useState(false)
 
