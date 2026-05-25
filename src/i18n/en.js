@@ -87,6 +87,7 @@ export default {
   greetingEvening: 'Good evening',
   guestName: 'there',
   homeIntro: 'Here’s your lens on today.',
+  updatedAgo: 'Updated {time}',
   trendingNow: 'Trending now',
   topStory: 'Top story',
   forYou: 'For you',
@@ -112,6 +113,9 @@ export default {
   paywalledTag: 'Paywall',
   bookmarkAdded: 'Saved to your bookmarks',
   bookmarkRemoved: 'Removed from bookmarks',
+  linkCopied: 'Link copied to clipboard',
+  shareUnavailable: 'Sharing not supported in this browser',
+  lensHintText: 'Tap to see who owns this →',
 
   /* ownership sheet */
   ownershipTitle: 'The ownership lens',

@@ -87,6 +87,7 @@ export default {
   greetingEvening: 'शुभ संध्या',
   guestName: 'दोस्त',
   homeIntro: 'आज की ख़बरों पर आपका लेंस।',
+  updatedAgo: 'अंतिम अपडेट · {time}',
   trendingNow: 'अभी चर्चा में',
   topStory: 'मुख्य ख़बर',
   forYou: 'आपके लिए',
@@ -112,6 +113,9 @@ export default {
   paywalledTag: 'पेवॉल',
   bookmarkAdded: 'आपके बुकमार्क में सहेजा गया',
   bookmarkRemoved: 'बुकमार्क से हटाया गया',
+  linkCopied: 'लिंक क्लिपबोर्ड पर कॉपी हो गया',
+  shareUnavailable: 'इस ब्राउज़र में शेयरिंग समर्थित नहीं',
+  lensHintText: 'टैप करें — मालिक देखें →',
 
   /* ownership sheet */
   ownershipTitle: 'स्वामित्व का लेंस',

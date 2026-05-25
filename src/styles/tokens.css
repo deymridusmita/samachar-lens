@@ -88,21 +88,21 @@
    ============================================================ */
 
 .phone-frame[data-theme='reading'] {
-  --app-bg: #f6efde;
-  --surface: #fbf5e6;
-  --surface-2: #efe6d0;
-  --ink: #3a3225;
-  --ink-soft: #5a4f3e;
-  --muted: #847964;
-  --faint: #ad9f86;
-  --line: #e6dcc4;
-  --line-strong: #d8cdb0;
-  --periwinkle-100: #ece6d6;
-  --periwinkle-200: #ddd5be;
-  --cream: #f4ecd5;
-  --cream-deep: #eedfb6;
-  --cream-line: #e2d3a8;
-  --ad-bg: #ebe4cf;
+  --app-bg: #f7f3e8;
+  --surface: #fcf9f1;
+  --surface-2: #ede8db;
+  --ink: #2a2520;
+  --ink-soft: #524b3f;
+  --muted: #6e6757;
+  --faint: #9b937f;
+  --line: #e4ddcb;
+  --line-strong: #d4ccb6;
+  --periwinkle-100: #e8e2d2;
+  --periwinkle-200: #d7d0bb;
+  --cream: #f0ead7;
+  --cream-deep: #e8debd;
+  --cream-line: #dccfa9;
+  --ad-bg: #eae3d0;
 }
 
 .phone-frame[data-theme='dark'] {
@@ -111,8 +111,8 @@
   --surface-2: #243140;
   --ink: #e8edf3;
   --ink-soft: #b5bfcc;
-  --muted: #828d9d;
-  --faint: #5a6675;
+  --muted: #a4aebc;
+  --faint: #8a94a1;
   --line: #2a3a4d;
   --line-strong: #354659;
   --periwinkle: #a9bff5;
@@ -126,7 +126,7 @@
 
 /* Make the desktop bg match the active theme too, for visual coherence. */
 .app-stage:has(.phone-frame[data-theme='reading']) {
-  background: linear-gradient(180deg, #ede5cd 0%, #ddd2b3 100%);
+  background: linear-gradient(180deg, #ece7d4 0%, #ddd5be 100%);
 }
 .app-stage:has(.phone-frame[data-theme='dark']) {
   background: radial-gradient(1100px 620px at 50% -8%, #14202e 0%, transparent 60%),

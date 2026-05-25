@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ChevronLeft, Bookmark, Share2, Clock, ScanSearch } from 'lucide-react'
 import { articleById, ARTICLES } from '../data/articles'
@@ -17,6 +17,9 @@ import PaywallSheet from '../components/PaywallSheet'
 import StoryCard from '../components/StoryCard'
 import AdCard from '../components/AdCard'
 import Button from '../components/ui/Button'
+import Portal from '../components/ui/Portal'
+
+const LENS_HINT_KEY = 'sl_seen_lens_hint'
 
 export default function Article() {
   const { id } = useParams()
@@ -26,6 +29,44 @@ export default function Article() {
   const { guard } = useGate()
   const [ownership, setOwnership] = useState(null)
   const [paywall, setPaywall] = useState(null)
+  const [showLensHint, setShowLensHint] = useState(false)
+  const [toast, setToast] = useState(null)
+  const toastTimer = useRef(null)
+
+  // First-time hint over the ownership lens — shows once, then auto-dismisses
+  // after 6s. Marked seen on dismiss/timeout/unmount so it never nags again.
+  useEffect(() => {
+    let marked = false
+    const markSeen = () => {
+      if (marked) return
+      marked = true
+      try { localStorage.setItem(LENS_HINT_KEY, '1') } catch {}
+    }
+    try {
+      if (!localStorage.getItem(LENS_HINT_KEY)) {
+        setShowLensHint(true)
+        const t = setTimeout(() => {
+          setShowLensHint(false)
+          markSeen()
+        }, 6000)
+        return () => {
+          clearTimeout(t)
+          markSeen()
+        }
+      }
+    } catch {}
+  }, [])
+
+  const dismissLensHint = () => {
+    setShowLensHint(false)
+    try { localStorage.setItem(LENS_HINT_KEY, '1') } catch {}
+  }
+
+  const showToast = (message) => {
+    setToast(message)
+    clearTimeout(toastTimer.current)
+    toastTimer.current = setTimeout(() => setToast(null), 2000)
+  }
 
   const article = articleById(id)
 
@@ -59,9 +100,22 @@ export default function Article() {
     else guard(() => setOwnership(s.outlet))
   }
 
-  const share = () => {
+  const share = async () => {
+    const url = window.location.href
     if (navigator.share) {
-      navigator.share({ title: pick(article.title) }).catch(() => {})
+      try {
+        await navigator.share({ title: pick(article.title), url })
+      } catch {
+        /* user cancelled the native share */
+      }
+      return
+    }
+    // No native share API (desktop browsers) — fall back to clipboard.
+    try {
+      await navigator.clipboard.writeText(url)
+      showToast(t('linkCopied'))
+    } catch {
+      showToast(t('shareUnavailable'))
     }
   }
 
@@ -128,10 +182,18 @@ export default function Article() {
             <Button
               size="sm"
               variant="navy"
-              onClick={() => guard(() => setOwnership(article.primarySource))}
+              onClick={() => {
+                dismissLensHint()
+                guard(() => setOwnership(article.primarySource))
+              }}
             >
               {t('openLens')}
             </Button>
+            {showLensHint && (
+              <button className="lens-hint" onClick={dismissLensHint}>
+                {t('lensHintText')}
+              </button>
+            )}
           </div>
 
           <div className="article-prose">
@@ -167,6 +229,12 @@ export default function Article() {
 
       <OwnershipSheet outletId={ownership} onClose={() => setOwnership(null)} />
       <PaywallSheet outletId={paywall} onClose={() => setPaywall(null)} />
+
+      {toast && (
+        <Portal>
+          <div className="toast">{toast}</div>
+        </Portal>
+      )}
     </div>
   )
 }

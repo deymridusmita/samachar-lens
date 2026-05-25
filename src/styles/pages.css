@@ -105,7 +105,7 @@
 }
 .intro-title {
   font-size: 25px;
-  color: var(--navy);
+  color: var(--ink);
 }
 .intro-body {
   font-size: 14.5px;
@@ -143,7 +143,7 @@
 }
 .intro-login button {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 /* ---- auth pages ---- */
@@ -164,7 +164,7 @@
 }
 .auth-title {
   font-size: 24px;
-  color: var(--navy);
+  color: var(--ink);
   margin-top: 12px;
 }
 .auth-sub {
@@ -184,7 +184,7 @@
   align-self: flex-end;
   font-size: 13px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--ink);
   margin-top: -4px;
 }
 .auth-foot {
@@ -204,7 +204,7 @@
 }
 .auth-switch button {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--ink);
 }
 .auth-success {
   display: flex;
@@ -253,7 +253,7 @@
 }
 .onb-title {
   font-size: 24px;
-  color: var(--navy);
+  color: var(--ink);
 }
 .onb-sub {
   font-size: 14px;
@@ -283,7 +283,7 @@
   transition: border-color 0.14s, background 0.14s;
 }
 .opt-row.is-selected {
-  border-color: var(--navy);
+  border-color: var(--ink);
   background: var(--periwinkle-100);
 }
 .opt-row.is-locked {
@@ -295,7 +295,7 @@
   flex-shrink: 0;
   border-radius: 9px;
   background: var(--periwinkle-100);
-  color: var(--navy);
+  color: var(--ink);
   display: grid;
   place-items: center;
 }
@@ -327,7 +327,7 @@
 }
 .opt-radio.is-on {
   background: var(--navy);
-  border-color: var(--navy);
+  border-color: var(--ink);
 }
 .opt-soon {
   font-size: 10px;
@@ -435,7 +435,7 @@
 }
 .welcome-title {
   font-size: 26px;
-  color: var(--navy);
+  color: var(--ink);
 }
 .welcome-text {
   font-size: 14.5px;
@@ -453,7 +453,7 @@
 .welcome-chip {
   font-size: 12px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--ink);
   background: var(--surface);
   border: 1px solid var(--line);
   padding: 6px 11px;
@@ -512,6 +512,10 @@
   padding-bottom: 10px;
 }
 .home-greet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   padding: 18px 20px 6px;
 }
 .home-greet-hi {
@@ -525,16 +529,44 @@
 .home-greet-sub {
   font-size: 13.5px;
   color: var(--muted);
-  margin-top: 2px;
+}
+.freshness-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+  padding: 4px 11px 4px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+}
+.freshness-pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.freshness-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0.45;
+  animation: pulse-ring 1.8s var(--ease) infinite;
 }
 .guest-badge {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 4px;
   font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--navy);
+  color: var(--ink);
   background: var(--cream-deep);
   padding: 5px 11px;
   border-radius: var(--r-pill);
@@ -551,7 +583,7 @@
 .article-title {
   font-size: 24px;
   line-height: 1.26;
-  color: var(--navy);
+  color: var(--ink);
   margin: 10px 0 8px;
 }
 .article-summary {
@@ -577,6 +609,7 @@
   color: var(--muted);
 }
 .lens-callout {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -598,7 +631,7 @@
 .lens-callout strong {
   display: block;
   font-size: 13.5px;
-  color: var(--navy);
+  color: var(--ink);
 }
 .lens-callout p {
   font-size: 11.5px;
@@ -686,7 +719,7 @@
 .query-chip {
   font-size: 13px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--ink);
   background: var(--surface);
   border: 1px solid var(--line-strong);
   padding: 8px 13px;
@@ -746,7 +779,7 @@
 }
 .profile-name {
   font-size: 21px;
-  color: var(--navy);
+  color: var(--ink);
   margin-top: 12px;
 }
 .profile-mail {
@@ -795,7 +828,7 @@
 .stat-value {
   font-size: 21px;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--ink);
 }
 .stat-label {
   font-size: 10px;
@@ -823,7 +856,7 @@
   color: var(--ink);
 }
 .profile-link > svg:first-child {
-  color: var(--navy);
+  color: var(--ink);
 }
 .profile-guest {
   display: flex;
@@ -838,14 +871,14 @@
   height: 80px;
   border-radius: 50%;
   background: var(--periwinkle-100);
-  color: var(--navy);
+  color: var(--ink);
   display: grid;
   place-items: center;
   margin-bottom: 4px;
 }
 .profile-guest-title {
   font-size: 20px;
-  color: var(--navy);
+  color: var(--ink);
 }
 .profile-guest-text {
   font-size: 13.5px;
@@ -893,7 +926,7 @@
   flex-shrink: 0;
   border-radius: 9px;
   background: var(--periwinkle-100);
-  color: var(--navy);
+  color: var(--ink);
   display: grid;
   place-items: center;
 }
@@ -992,7 +1025,7 @@
 }
 .premium-status strong {
   font-size: 14.5px;
-  color: var(--navy);
+  color: var(--ink);
 }
 .premium-status p {
   font-size: 12px;
@@ -1002,7 +1035,7 @@
 
 /* ---- settings premium row ---- */
 .setting-ic--gold {
-  background: linear-gradient(140deg, var(--cream-deep), var(--orange));
+  background: linear-gradient(140deg, #ffd685, var(--orange));
   color: var(--navy);
 }
 .setting-value--active {

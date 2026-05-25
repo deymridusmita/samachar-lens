@@ -22,16 +22,26 @@ function greetingKey() {
   return 'greetingEvening'
 }
 
+/* Parses time labels like "1h ago" / "30 min ago" into minutes. */
+function parseAgoMins(s) {
+  const m = s.match(/(\d+)\s*(min|h)/i)
+  if (!m) return Infinity
+  return m[2].toLowerCase().startsWith('min') ? +m[1] : +m[1] * 60
+}
+
 export default function Home() {
   const navigate = useNavigate()
   const { user, isAuthenticated, hasExplored } = useAuth()
   const { topics } = usePreferences()
-  const { t } = useTranslation()
+  const { t, pick } = useTranslation()
   const { guard } = useGate()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [ownership, setOwnership] = useState(null)
 
   const trending = ARTICLES.filter((a) => a.trending)
+  const freshest = [...ARTICLES].sort(
+    (a, b) => parseAgoMins(a.time.en) - parseAgoMins(b.time.en),
+  )[0]
   const forYou = topics.length
     ? [...ARTICLES].sort(
         (a, b) =>
@@ -71,6 +81,10 @@ export default function Home() {
             {t(greetingKey())}, <strong>{firstName}</strong>
           </p>
           <p className="home-greet-sub">{t('homeIntro')}</p>
+          <span className="freshness-chip">
+            <span className="freshness-pulse" />
+            {t('updatedAgo', { time: pick(freshest.time) })}
+          </span>
           {hasExplored && !isAuthenticated && (
             <span className="guest-badge">{t('guestBadge')}</span>
           )}

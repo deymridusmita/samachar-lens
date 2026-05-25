@@ -53,14 +53,14 @@
 }
 .btn--soft {
   background: var(--periwinkle-100);
-  color: var(--navy);
+  color: var(--ink);
 }
 .btn--soft:hover {
   background: var(--periwinkle-200);
 }
 .btn--outline {
   background: transparent;
-  color: var(--navy);
+  color: var(--ink);
   box-shadow: inset 0 0 0 1.6px var(--line-strong);
 }
 .btn--outline:hover {
@@ -68,7 +68,7 @@
 }
 .btn--ghost {
   background: transparent;
-  color: var(--navy);
+  color: var(--ink);
 }
 .btn--ghost:hover {
   background: var(--surface-2);
@@ -196,7 +196,7 @@
 }
 .checkbox-box.is-checked {
   background: var(--navy);
-  border-color: var(--navy);
+  border-color: var(--ink);
 }
 .checkbox-label {
   font-size: 13px;
@@ -265,7 +265,7 @@
 }
 .tabs-tab.is-active {
   background: var(--surface);
-  color: var(--navy);
+  color: var(--ink);
   box-shadow: var(--shadow-xs);
 }
 
@@ -363,7 +363,7 @@
   height: 58px;
   border-radius: 50%;
   background: var(--periwinkle-100);
-  color: var(--navy);
+  color: var(--ink);
   display: grid;
   place-items: center;
   margin: 0 auto 14px;
@@ -422,5 +422,5 @@
   transition: color 0.14s;
 }
 .nav-item.active {
-  color: var(--navy);
+  color: var(--ink);
 }
