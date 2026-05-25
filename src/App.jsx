@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { PreferencesProvider } from './context/PreferencesContext'
 import { AuthProvider } from './context/AuthContext'
 import { BookmarksProvider } from './context/BookmarksContext'
@@ -11,6 +12,7 @@ export default function App() {
         <BookmarksProvider>
           <BrowserRouter>
             <AppRouter />
+            <Analytics />
           </BrowserRouter>
         </BookmarksProvider>
       </AuthProvider>
