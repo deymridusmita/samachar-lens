@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { PreferencesProvider } from './context/PreferencesContext'
 import { AuthProvider } from './context/AuthContext'
 import { BookmarksProvider } from './context/BookmarksContext'
@@ -13,6 +14,7 @@ export default function App() {
           <BrowserRouter>
             <AppRouter />
             <Analytics />
+            <SpeedInsights />
           </BrowserRouter>
         </BookmarksProvider>
       </AuthProvider>
