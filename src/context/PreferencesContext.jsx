@@ -7,7 +7,9 @@ const DEFAULTS = {
   region: 'national',
   topics: [],
   textSize: 'medium',
+  theme: 'default',
   dataSaver: false,
+  offlineMode: false,
   notifications: { push: true, breaking: true, digest: false },
   onboarded: false,
 }
@@ -50,7 +52,9 @@ export function PreferencesProvider({ children }) {
           : [...p.topics, id],
       })),
     setTextSize: (textSize) => patch({ textSize }),
+    setTheme: (theme) => patch({ theme }),
     setDataSaver: (dataSaver) => patch({ dataSaver }),
+    setOfflineMode: (offlineMode) => patch({ offlineMode }),
     toggleNotification: (key) =>
       setPrefs((p) => ({
         ...p,

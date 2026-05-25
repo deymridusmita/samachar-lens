@@ -14,6 +14,8 @@ import {
   Info,
   LogOut,
   Sparkles,
+  Palette,
+  WifiOff,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { usePreferences } from '../context/PreferencesContext'
@@ -143,6 +145,26 @@ export default function Settings() {
           </div>
         </div>
 
+        {/* appearance */}
+        <p className="settings-group-label">{t('appearanceSection')}</p>
+        <div className="setting-group">
+          <div className="setting-row setting-row--stack">
+            <div className="setting-row-line">
+              <span className="setting-ic"><Palette size={18} /></span>
+              <span className="setting-label">{t('theme')}</span>
+            </div>
+            <Tabs
+              value={prefs.theme}
+              onChange={prefs.setTheme}
+              items={[
+                { value: 'default', label: t('themeDefault') },
+                { value: 'reading', label: t('themeReading') },
+                { value: 'dark', label: t('themeDark') },
+              ]}
+            />
+          </div>
+        </div>
+
         {/* reading experience */}
         <p className="settings-group-label">{t('readingSection')}</p>
         <div className="setting-group">
@@ -170,6 +192,17 @@ export default function Settings() {
             <Toggle
               checked={prefs.dataSaver}
               onChange={() => prefs.setDataSaver(!prefs.dataSaver)}
+            />
+          </div>
+          <div className="setting-row">
+            <span className="setting-ic"><WifiOff size={18} /></span>
+            <span className="setting-label">
+              {t('offlineMode')}
+              <small className="setting-sub">{t('offlineSub')}</small>
+            </span>
+            <Toggle
+              checked={prefs.offlineMode}
+              onChange={() => prefs.setOfflineMode(!prefs.offlineMode)}
             />
           </div>
         </div>

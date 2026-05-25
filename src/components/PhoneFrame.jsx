@@ -11,7 +11,7 @@ const NAV_ROUTES = ['/home', '/search', '/bookmarks', '/profile']
 
 export default function PhoneFrame() {
   const { pathname } = useLocation()
-  const { textSize } = usePreferences()
+  const { textSize, theme } = usePreferences()
   const screenRef = useRef(null)
   const showNav = NAV_ROUTES.includes(pathname)
 
@@ -21,7 +21,12 @@ export default function PhoneFrame() {
 
   return (
     <div className="app-stage">
-      <div className="phone-frame" id="phone-frame" data-text={textSize}>
+      <div
+        className="phone-frame"
+        id="phone-frame"
+        data-text={textSize}
+        data-theme={theme}
+      >
         <div className="phone-screen" ref={screenRef}>
           <Outlet />
         </div>

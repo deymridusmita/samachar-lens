@@ -50,6 +50,7 @@
   --surface-2: #f4f6fb;
   --app-bg: #f6f7fb;
   --stage-bg: #dfe3ec;
+  --ad-bg: #e7e9f1;
 
   /* ---- typography ---- */
   --font-serif: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
@@ -79,4 +80,55 @@
   /* ---- motion ---- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur: 0.26s;
+}
+
+/* ============================================================
+   Theme variants — applied via data-theme on .phone-frame.
+   Reading = warm low-glare; Dark = night-reading.
+   ============================================================ */
+
+.phone-frame[data-theme='reading'] {
+  --app-bg: #f6efde;
+  --surface: #fbf5e6;
+  --surface-2: #efe6d0;
+  --ink: #3a3225;
+  --ink-soft: #5a4f3e;
+  --muted: #847964;
+  --faint: #ad9f86;
+  --line: #e6dcc4;
+  --line-strong: #d8cdb0;
+  --periwinkle-100: #ece6d6;
+  --periwinkle-200: #ddd5be;
+  --cream: #f4ecd5;
+  --cream-deep: #eedfb6;
+  --cream-line: #e2d3a8;
+  --ad-bg: #ebe4cf;
+}
+
+.phone-frame[data-theme='dark'] {
+  --app-bg: #0f1822;
+  --surface: #1a2533;
+  --surface-2: #243140;
+  --ink: #e8edf3;
+  --ink-soft: #b5bfcc;
+  --muted: #828d9d;
+  --faint: #5a6675;
+  --line: #2a3a4d;
+  --line-strong: #354659;
+  --periwinkle: #a9bff5;
+  --periwinkle-100: #1c2a3d;
+  --periwinkle-200: #2a3b54;
+  --cream: #2a221a;
+  --cream-deep: #3a2f23;
+  --cream-line: #4a3d2a;
+  --ad-bg: #1f2a39;
+}
+
+/* Make the desktop bg match the active theme too, for visual coherence. */
+.app-stage:has(.phone-frame[data-theme='reading']) {
+  background: linear-gradient(180deg, #ede5cd 0%, #ddd2b3 100%);
+}
+.app-stage:has(.phone-frame[data-theme='dark']) {
+  background: radial-gradient(1100px 620px at 50% -8%, #14202e 0%, transparent 60%),
+    linear-gradient(180deg, #0a1018 0%, #050b13 100%);
 }
