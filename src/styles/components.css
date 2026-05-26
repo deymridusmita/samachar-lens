@@ -82,7 +82,9 @@
   background: color-mix(in srgb, var(--cat) 22%, var(--surface));
 }
 .cat-chip--ghost {
-  color: var(--ink);
+  /* Sits on a fixed white pill over the hero image — dark text in both
+     themes. */
+  color: var(--navy);
   background: rgba(255, 255, 255, 0.92);
 }
 .meta-dot {
