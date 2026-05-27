@@ -721,6 +721,14 @@
   font-size: 14.5px;
   color: var(--ink);
 }
+/* Hide the browser-default clear icon on type="search" inputs — we
+   render our own × button. */
+.search-bar-input::-webkit-search-cancel-button,
+.search-bar-input::-webkit-search-decoration {
+  appearance: none;
+  -webkit-appearance: none;
+  display: none;
+}
 .search-bar-input::placeholder {
   color: var(--faint);
 }
