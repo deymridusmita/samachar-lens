@@ -151,6 +151,11 @@ export default {
   paywallBody: 'पूरा लेख पढ़ने के लिए {outlet} को सदस्यता चाहिए।',
   subscribeMock: '{outlet} की सदस्यता लें',
   readSummaryInstead: 'इसके बजाय Samachar Lens का सारांश पढ़ें',
+  leaveAppTitle: 'Samachar Lens से बाहर जाएँ?',
+  leaveAppBody: 'यह आपको {outlet} के सदस्यता पृष्ठ पर ले जाएगा।',
+  continueOut: 'जारी रखें',
+  stayHere: 'यहीं रहें',
+  openingOutlet: '{outlet} खुल रहा है…',
 
   /* sign-up gate */
   gateTitle: 'साइन अप करें — यह मुफ़्त है!',

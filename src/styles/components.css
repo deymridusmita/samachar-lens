@@ -982,7 +982,9 @@
   margin-top: 14px;
   padding: 14px;
   border-radius: var(--r-md);
-  background: linear-gradient(135deg, var(--cream), #fff);
+  /* Both stops are themed tokens — gradient stays subtle in every mode
+     (was hard-coded #fff, which glared bright white in dark theme). */
+  background: linear-gradient(135deg, var(--cream), var(--surface));
   border: 1px solid var(--cream-line);
 }
 .premium-panel--dark {

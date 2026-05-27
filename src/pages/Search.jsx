@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Search as SearchIcon, X } from 'lucide-react'
+import { Search as SearchIcon, X, Menu } from 'lucide-react'
 import { ARTICLES } from '../data/articles'
 import { TOPICS, topicById } from '../data/topics'
 import { useTranslation } from '../hooks/useTranslation'
+import AppDrawer from '../components/AppDrawer'
 import StoryCard from '../components/StoryCard'
 
 const TRENDING = ['Chabahar', 'RBI repo rate', 'Cyclone', 'Gaganyaan', 'SIR rolls']
@@ -10,6 +11,7 @@ const TRENDING = ['Chabahar', 'RBI repo rate', 'Cyclone', 'Gaganyaan', 'SIR roll
 export default function Search() {
   const { t, pick } = useTranslation()
   const [query, setQuery] = useState('')
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const q = query.trim().toLowerCase()
 
   const results = q
@@ -24,6 +26,13 @@ export default function Search() {
   return (
     <div className="screen has-nav-pad">
       <div className="search-top">
+        <button
+          className="icon-btn"
+          onClick={() => setDrawerOpen(true)}
+          aria-label="Menu"
+        >
+          <Menu size={22} />
+        </button>
         <div className="search-bar">
           <SearchIcon size={18} className="search-bar-ic" />
           <input
@@ -104,6 +113,8 @@ export default function Search() {
           </>
         )}
       </div>
+
+      <AppDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </div>
   )
 }

@@ -151,6 +151,11 @@ export default {
   paywallBody: '{outlet} requires a subscription to read the full article.',
   subscribeMock: 'Subscribe to {outlet}',
   readSummaryInstead: 'Read the Samachar Lens summary instead',
+  leaveAppTitle: 'Leave Samachar Lens?',
+  leaveAppBody: 'This will take you to {outlet}’s subscription page.',
+  continueOut: 'Continue',
+  stayHere: 'Stay here',
+  openingOutlet: 'Opening {outlet}…',
 
   /* sign-up gate */
   gateTitle: 'Sign up — it’s free!',

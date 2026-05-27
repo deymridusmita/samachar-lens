@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Bookmark } from 'lucide-react'
+import { Bookmark, Menu } from 'lucide-react'
 import { ARTICLES } from '../data/articles'
 import { useBookmarks } from '../context/BookmarksContext'
 import { useTranslation } from '../hooks/useTranslation'
 import AppHeader from '../components/AppHeader'
+import AppDrawer from '../components/AppDrawer'
 import StoryCard from '../components/StoryCard'
 import Button from '../components/ui/Button'
 
@@ -11,6 +13,7 @@ export default function Bookmarks() {
   const navigate = useNavigate()
   const { bookmarks } = useBookmarks()
   const { t } = useTranslation()
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const saved = bookmarks
     .map((id) => ARTICLES.find((a) => a.id === id))
@@ -18,7 +21,18 @@ export default function Bookmarks() {
 
   return (
     <div className="screen has-nav-pad">
-      <AppHeader center={t('bookmarksTitle')} />
+      <AppHeader
+        left={
+          <button
+            className="icon-btn"
+            onClick={() => setDrawerOpen(true)}
+            aria-label="Menu"
+          >
+            <Menu size={22} />
+          </button>
+        }
+        center={t('bookmarksTitle')}
+      />
 
       <div className="screen-pad">
         {saved.length ? (
@@ -43,6 +57,8 @@ export default function Bookmarks() {
           </div>
         )}
       </div>
+
+      <AppDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </div>
   )
 }

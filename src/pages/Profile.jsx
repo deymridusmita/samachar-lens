@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import {
   Settings,
   ChevronRight,
@@ -9,6 +10,7 @@ import {
   UserRound,
   Sparkles,
   Pencil,
+  Menu,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { usePreferences } from '../context/PreferencesContext'
@@ -16,6 +18,7 @@ import { useBookmarks } from '../context/BookmarksContext'
 import { useTranslation } from '../hooks/useTranslation'
 import { topicById, regionById } from '../data/topics'
 import AppHeader from '../components/AppHeader'
+import AppDrawer from '../components/AppDrawer'
 import Avatar from '../components/ui/Avatar'
 import Button from '../components/ui/Button'
 
@@ -25,6 +28,17 @@ export default function Profile() {
   const { topics, region } = usePreferences()
   const { bookmarks } = useBookmarks()
   const { t, pick } = useTranslation()
+  const [drawerOpen, setDrawerOpen] = useState(false)
+
+  const menuBtn = (
+    <button
+      className="icon-btn"
+      onClick={() => setDrawerOpen(true)}
+      aria-label="Menu"
+    >
+      <Menu size={22} />
+    </button>
+  )
 
   const settingsBtn = (
     <button
@@ -39,7 +53,7 @@ export default function Profile() {
   if (!isAuthenticated) {
     return (
       <div className="screen has-nav-pad">
-        <AppHeader center={t('profileTitle')} right={settingsBtn} />
+        <AppHeader left={menuBtn} center={t('profileTitle')} right={settingsBtn} />
         <div className="profile-guest screen-pad">
           <div className="profile-guest-ic">
             <UserRound size={32} />
@@ -55,6 +69,7 @@ export default function Profile() {
             {t('logIn')}
           </Button>
         </div>
+        <AppDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
       </div>
     )
   }
@@ -68,7 +83,7 @@ export default function Profile() {
 
   return (
     <div className="screen has-nav-pad">
-      <AppHeader center={t('profileTitle')} right={settingsBtn} />
+      <AppHeader left={menuBtn} center={t('profileTitle')} right={settingsBtn} />
 
       <div className="profile">
         <div className="profile-hero">
@@ -158,6 +173,8 @@ export default function Profile() {
           </button>
         </section>
       </div>
+
+      <AppDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </div>
   )
 }

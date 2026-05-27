@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronLeft, Bookmark, Share2, Clock, ScanSearch } from 'lucide-react'
+import { ChevronLeft, Bookmark, Share2, Clock, ScanSearch, ExternalLink } from 'lucide-react'
 import { articleById, ARTICLES } from '../data/articles'
 import { outletById } from '../data/outlets'
 import { topicById } from '../data/topics'
@@ -17,6 +17,7 @@ import PaywallSheet from '../components/PaywallSheet'
 import StoryCard from '../components/StoryCard'
 import AdCard from '../components/AdCard'
 import Button from '../components/ui/Button'
+import Modal from '../components/ui/Modal'
 import Portal from '../components/ui/Portal'
 
 const LENS_HINT_KEY = 'sl_seen_lens_hint'
@@ -29,9 +30,15 @@ export default function Article() {
   const { guard } = useGate()
   const [ownership, setOwnership] = useState(null)
   const [paywall, setPaywall] = useState(null)
+  const [exitConfirm, setExitConfirm] = useState(null)
   const [showLensHint, setShowLensHint] = useState(false)
   const [toast, setToast] = useState(null)
   const toastTimer = useRef(null)
+
+  const scrollScreenToTop = () => {
+    const screen = document.querySelector('.phone-screen')
+    if (screen) screen.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   // First-time hint over the ownership lens — shows once, then auto-dismisses
   // after 6s. Marked seen on dismiss/timeout/unmount so it never nags again.
@@ -228,7 +235,40 @@ export default function Article() {
       </article>
 
       <OwnershipSheet outletId={ownership} onClose={() => setOwnership(null)} />
-      <PaywallSheet outletId={paywall} onClose={() => setPaywall(null)} />
+      <PaywallSheet
+        outletId={paywall}
+        onClose={() => setPaywall(null)}
+        onSubscribe={(name) => {
+          setPaywall(null)
+          setExitConfirm(name)
+        }}
+        onSummary={scrollScreenToTop}
+      />
+
+      <Modal
+        open={!!exitConfirm}
+        onClose={() => setExitConfirm(null)}
+        icon={<ExternalLink size={22} />}
+        title={t('leaveAppTitle')}
+        actions={
+          <>
+            <Button
+              variant="primary"
+              onClick={() => {
+                showToast(t('openingOutlet', { outlet: exitConfirm }))
+                setExitConfirm(null)
+              }}
+            >
+              {t('continueOut')}
+            </Button>
+            <Button variant="ghost" onClick={() => setExitConfirm(null)}>
+              {t('stayHere')}
+            </Button>
+          </>
+        }
+      >
+        {exitConfirm && t('leaveAppBody', { outlet: exitConfirm })}
+      </Modal>
 
       {toast && (
         <Portal>
