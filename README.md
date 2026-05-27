@@ -2,8 +2,8 @@
 
 > See the news. See who owns it.
 
-**Submitted by:** Group 5 (Mridusmita Dey, Souvik Banerjee, Subhajit Mondal, Kaif Kamal, Sayandeep Biswas, Pratibha Mukherjee)
-**Course:** Design Thinking (TIU-UCBCS-S208) · Final Deliverables
+- **Submitted by:** Group 5 (Mridusmita Dey, Souvik Banerjee, Subhajit Mondal, Kaif Kamal, Sayandeep Biswas, Pratibha Mukherjee)
+- **Course:** Design Thinking (TIU-UCBCS-S208) · Final Deliverables
 
 ## About
 
