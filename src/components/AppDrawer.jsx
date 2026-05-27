@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Home, Search, Bookmark, User, Settings, LogOut, LogIn, X } from 'lucide-react'
 import SideDrawer from './ui/SideDrawer'
 import BrandMark from './BrandMark'
@@ -61,10 +61,15 @@ export default function AppDrawer({ open, onClose }) {
 
         <nav className="drawer-nav">
           {LINKS.map(({ to, Icon, key }) => (
-            <button key={to} className="drawer-link" onClick={() => go(to)}>
+            <NavLink
+              key={to}
+              to={to}
+              className="drawer-link"
+              onClick={onClose}
+            >
               <Icon size={19} strokeWidth={2} />
               <span>{t(key)}</span>
-            </button>
+            </NavLink>
           ))}
         </nav>
 

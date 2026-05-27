@@ -432,6 +432,7 @@
   padding: 4px 10px;
 }
 .drawer-link {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -441,11 +442,27 @@
   font-weight: 600;
   color: var(--ink-soft);
   text-align: left;
+  text-decoration: none;
   transition: background 0.14s, color 0.14s;
 }
 .drawer-link:hover {
   background: var(--surface-2);
   color: var(--ink);
+}
+.drawer-link.active {
+  background: var(--periwinkle-100);
+  color: var(--ink);
+  font-weight: 700;
+}
+.drawer-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--orange);
 }
 .drawer-section-label {
   display: block;

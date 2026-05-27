@@ -88,6 +88,8 @@ export default {
   guestName: 'दोस्त',
   homeIntro: 'आज की ख़बरों पर आपका लेंस।',
   updatedAgo: 'अंतिम अपडेट · {time}',
+  refreshing: 'ताज़ा हो रहा है…',
+  upToDate: 'अद्यतन है',
   trendingNow: 'अभी चर्चा में',
   topStory: 'मुख्य ख़बर',
   forYou: 'आपके लिए',
@@ -166,6 +168,7 @@ export default {
 
   /* search */
   searchPlaceholder: 'ख़बरें, विषय, संस्थान खोजें',
+  recentSearches: 'हाल की खोजें',
   trendingSearches: 'चर्चित खोजें',
   browseTopics: 'विषय से देखें',
   resultsFor: '“{q}” के परिणाम',

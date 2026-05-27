@@ -7,12 +7,42 @@ import AppDrawer from '../components/AppDrawer'
 import StoryCard from '../components/StoryCard'
 
 const TRENDING = ['Chabahar', 'RBI repo rate', 'Cyclone', 'Gaganyaan', 'SIR rolls']
+const RECENTS_KEY = 'sl_recent_searches'
+const RECENTS_MAX = 5
+
+function loadRecents() {
+  try {
+    const raw = localStorage.getItem(RECENTS_KEY)
+    return raw ? JSON.parse(raw) : []
+  } catch {
+    return []
+  }
+}
 
 export default function Search() {
   const { t, pick } = useTranslation()
   const [query, setQuery] = useState('')
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [recents, setRecents] = useState(loadRecents)
   const q = query.trim().toLowerCase()
+
+  const pushRecent = (term) => {
+    setRecents((prev) => {
+      const next = [
+        term,
+        ...prev.filter((x) => x.toLowerCase() !== term.toLowerCase()),
+      ].slice(0, RECENTS_MAX)
+      try {
+        localStorage.setItem(RECENTS_KEY, JSON.stringify(next))
+      } catch {}
+      return next
+    })
+  }
+
+  const runSearch = (term) => {
+    setQuery(term)
+    pushRecent(term)
+  }
 
   const results = q
     ? ARTICLES.filter(
@@ -79,6 +109,23 @@ export default function Search() {
           )
         ) : (
           <>
+            {recents.length > 0 && (
+              <section className="search-section">
+                <h2 className="section-title">{t('recentSearches')}</h2>
+                <div className="chip-wrap">
+                  {recents.map((term) => (
+                    <button
+                      key={term}
+                      className="query-chip"
+                      onClick={() => runSearch(term)}
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
+
             <section className="search-section">
               <h2 className="section-title">{t('trendingSearches')}</h2>
               <div className="chip-wrap">
@@ -86,7 +133,7 @@ export default function Search() {
                   <button
                     key={term}
                     className="query-chip"
-                    onClick={() => setQuery(term)}
+                    onClick={() => runSearch(term)}
                   >
                     {term}
                   </button>
@@ -102,7 +149,7 @@ export default function Search() {
                     key={topic.id}
                     className="topic-card"
                     style={{ '--cat': topic.color }}
-                    onClick={() => setQuery(pick(topic))}
+                    onClick={() => runSearch(pick(topic))}
                   >
                     <span className="topic-emoji">{topic.icon}</span>
                     <span className="topic-name">{pick(topic)}</span>

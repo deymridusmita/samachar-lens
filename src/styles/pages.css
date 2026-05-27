@@ -530,17 +530,24 @@
   font-size: 13.5px;
   color: var(--muted);
 }
-/* The freshness chip is intentionally borderless — flows with the
-   greeting copy rather than reading as a separate badge. */
+/* The freshness chip is intentionally borderless, flows with the greeting
+   copy rather than reading as a separate badge. Tap to "refresh" the feed
+   (visual only, since this is a static demo). */
 .freshness-chip {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   margin-top: 4px;
+  padding: 0;
   font-size: 11.5px;
   font-weight: 600;
   color: var(--muted);
   letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: color 0.18s var(--ease);
+}
+.freshness-chip.is-refreshing {
+  color: var(--green);
 }
 .freshness-pulse {
   position: relative;
@@ -548,6 +555,7 @@
   height: 7px;
   border-radius: 50%;
   background: var(--green);
+  transition: transform 0.18s var(--ease);
 }
 .freshness-pulse::after {
   content: '';
@@ -557,6 +565,16 @@
   background: var(--green);
   opacity: 0.32;
   animation: pulse-ring 2s var(--ease) infinite;
+}
+.freshness-chip.is-refreshing .freshness-pulse {
+  animation: freshness-beat 0.55s ease-in-out infinite;
+}
+.freshness-chip.is-refreshing .freshness-pulse::after {
+  animation-duration: 0.7s;
+}
+@keyframes freshness-beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.45); }
 }
 .guest-badge {
   display: inline-block;
@@ -688,6 +706,7 @@
 }
 .search-bar:focus-within {
   border-color: var(--periwinkle);
+  box-shadow: 0 0 0 3.5px var(--periwinkle-100);
 }
 .search-bar-ic {
   color: var(--muted);

@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, useRef, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Menu, Search } from 'lucide-react'
 import { ARTICLES } from '../data/articles'
@@ -37,6 +37,18 @@ export default function Home() {
   const { guard } = useGate()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [ownership, setOwnership] = useState(null)
+  const [refreshState, setRefreshState] = useState('idle')
+  const refreshTimers = useRef([])
+
+  const refreshFeed = () => {
+    if (refreshState !== 'idle') return
+    setRefreshState('refreshing')
+    refreshTimers.current.forEach(clearTimeout)
+    refreshTimers.current = [
+      setTimeout(() => setRefreshState('done'), 800),
+      setTimeout(() => setRefreshState('idle'), 2800),
+    ]
+  }
 
   const trending = ARTICLES.filter((a) => a.trending)
   const freshest = [...ARTICLES].sort(
@@ -81,10 +93,20 @@ export default function Home() {
             {t(greetingKey())}, <strong>{firstName}</strong>
           </p>
           <p className="home-greet-sub">{t('homeIntro')}</p>
-          <span className="freshness-chip">
+          <button
+            type="button"
+            className={`freshness-chip ${
+              refreshState !== 'idle' ? 'is-refreshing' : ''
+            }`}
+            onClick={refreshFeed}
+            aria-label={t('refreshing')}
+          >
             <span className="freshness-pulse" />
-            {t('updatedAgo', { time: pick(freshest.time) })}
-          </span>
+            {refreshState === 'refreshing' && t('refreshing')}
+            {refreshState === 'done' && t('upToDate')}
+            {refreshState === 'idle' &&
+              t('updatedAgo', { time: pick(freshest.time) })}
+          </button>
           {hasExplored && !isAuthenticated && (
             <span className="guest-badge">{t('guestBadge')}</span>
           )}

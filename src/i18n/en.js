@@ -88,6 +88,8 @@ export default {
   guestName: 'there',
   homeIntro: 'Here’s your lens on today.',
   updatedAgo: 'Updated {time}',
+  refreshing: 'Refreshing…',
+  upToDate: 'Up to date',
   trendingNow: 'Trending now',
   topStory: 'Top story',
   forYou: 'For you',
@@ -166,6 +168,7 @@ export default {
 
   /* search */
   searchPlaceholder: 'Search news, topics, outlets',
+  recentSearches: 'Recent searches',
   trendingSearches: 'Trending searches',
   browseTopics: 'Browse by topic',
   resultsFor: 'Results for “{q}”',
