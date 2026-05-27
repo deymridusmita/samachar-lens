@@ -530,34 +530,33 @@
   font-size: 13.5px;
   color: var(--muted);
 }
+/* The freshness chip is intentionally borderless — flows with the
+   greeting copy rather than reading as a separate badge. */
 .freshness-chip {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-top: 6px;
-  padding: 4px 11px 4px 9px;
-  font-size: 11px;
+  margin-top: 4px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--muted);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
+  letter-spacing: 0.01em;
 }
 .freshness-pulse {
   position: relative;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--green);
 }
 .freshness-pulse::after {
   content: '';
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   border-radius: 50%;
   background: var(--green);
-  opacity: 0.45;
-  animation: pulse-ring 1.8s var(--ease) infinite;
+  opacity: 0.32;
+  animation: pulse-ring 2s var(--ease) infinite;
 }
 .guest-badge {
   display: inline-block;
@@ -691,6 +690,8 @@
   flex: 1;
   min-width: 0;
   background: none;
+  border: none;
+  outline: none;
   font-size: 14.5px;
   color: var(--ink);
 }
