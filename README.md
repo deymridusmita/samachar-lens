@@ -69,18 +69,6 @@ samachar-lens/
 └─ index.html
 ```
 
-## Images
-
-Images are served from `public/`. Filenames must match exactly:
-
-| Folder            | Files |
-|-------------------|-------|
-| `public/news/`    | `modi-iran.jpg`, `mamata-sir.jpg`, `rbi-repo.jpg`, `cyclone-odisha.jpg`, `isro-gaganyaan.jpg`, `u17-football.jpg` |
-| `public/ads/`     | `mobile.jpg`, `bank.jpg`, `edu.jpg` |
-| `public/profile/` | `priya.jpg` |
-
-Missing images fall back to a tinted placeholder so the app always renders.
-
 ## Scope and notes
 
 There is no backend, no real authentication and no real payment. Sign-up and login route through the flow without creating an account; "Priya Sharma" is the demo persona. Article text and ownership details are written for this project. Outlet identities are shown as styled text wordmarks rather than the original brand marks.
